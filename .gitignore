@@ -1,0 +1,20 @@
+# Local datasets and model artifacts must remain outside this release.
+data/
+*.pt
+*.pth
+*.ckpt
+*.parquet
+*.npy
+*.npz
+*.pkl
+# Local environments, credentials, logs and generated caches.
+.env
+.env.*
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+*.log
+.DS_Store
+Thumbs.db

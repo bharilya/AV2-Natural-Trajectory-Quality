@@ -1,0 +1,3 @@
+# Annotations-only release. Python 3.9+ standard library is sufficient to read
+# TXT/CSV/JSON manifests (pathlib, csv, json). No pip dependencies are required.
+# Model preprocessing/evaluation and the official AV2 API are not included.
