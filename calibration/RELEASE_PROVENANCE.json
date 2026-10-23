@@ -1,0 +1,19 @@
+{
+  "metadata_only_changes": {
+    "subset_manifests/*_scenarios.csv": {
+      "field": "pt_path",
+      "replacement": "val/<pt_filename> relative to the processed dataset root"
+    },
+    "calibration/train_calibration.json": {
+      "field": "processed_root",
+      "replacement": "data/DeMo_processed"
+    }
+  },
+  "original_agent_calibration_sha256": "6e92f9315a0eec823d96ab705e16b83dad06f1152f7b30c1e84ba63acbe90595",
+  "release_agent_calibration_sha256": "91fa428a4dbe92f5305ffa7cdaeb0d1fce26b0cbf8bd37974dbc01b41ac1f457",
+  "scene_calibration_sha256": "65f4746bfae418fcc3f85f069d8f7d3160f54c91d341d88b81f9234bd9005caf",
+  "scene_reference_note": "scene_MSR_calibration.json retains the original agent_calibration_sha256. The mapping above resolves that source hash to the path-sanitized release file. All scientific fields are identical.",
+  "statistics_and_figures_byte_identical": true,
+  "scores_recomputed": false,
+  "subsets_regenerated": false
+}

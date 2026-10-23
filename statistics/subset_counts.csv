@@ -1,0 +1,13 @@
+metric,group,scenarios,percent_all_validation,percent_defined,overall_count_at_least_100,sample_size_note
+MSR,high,2483,9.936769649431728,9.938758355681864,True,"100 is a descriptive review flag, not a statistical power guarantee"
+MSR,low,12725,50.92444373299183,50.93463555217548,True,"100 is a descriptive review flag, not a statistical power guarantee"
+MSR,middle,9775,39.11877701296623,39.12660609214266,True,"100 is a descriptive review flag, not a statistical power guarantee"
+MSR,no_eligible_context,5,0.0200096046102129,,False,"100 is a descriptive review flag, not a statistical power guarantee"
+VJ,high,624,2.49719865535457,2.49719865535457,True,"100 is a descriptive review flag, not a statistical power guarantee"
+VJ,low,3907,15.635505042420363,15.635505042420363,True,"100 is a descriptive review flag, not a statistical power guarantee"
+VJ,middle,20457,81.86729630222507,81.86729630222507,True,"100 is a descriptive review flag, not a statistical power guarantee"
+VJ,undefined,0,0.0,,False,"100 is a descriptive review flag, not a statistical power guarantee"
+HJ,high,2290,9.164398911477509,9.164398911477509,True,"100 is a descriptive review flag, not a statistical power guarantee"
+HJ,low,7046,28.19753481671202,28.19753481671202,True,"100 is a descriptive review flag, not a statistical power guarantee"
+HJ,middle,15652,62.638066271810466,62.638066271810466,True,"100 is a descriptive review flag, not a statistical power guarantee"
+HJ,undefined,0,0.0,,False,"100 is a descriptive review flag, not a statistical power guarantee"

@@ -1,0 +1,219 @@
+{
+  "fit_split": "train",
+  "training_scenes": 199908,
+  "eligible_training_scenes": 199871,
+  "no_eligible_training_context_scenes": 37,
+  "definition": "number of eligible model-visible context agents with MSR > existing type-specific training agent MSR P90 / eligible model-visible context count",
+  "scene_thresholds": {
+    "P50": 0.07142857142857142,
+    "P90": 0.20689655172413793
+  },
+  "quantile_method": "linear",
+  "training_score_distribution": {
+    "min": 0.0,
+    "max": 1.0,
+    "mean": 0.08906654974849586,
+    "std_population": 0.09198372836168746,
+    "zero_fraction": 0.31453787693062024,
+    "ties_at_P50": 3536,
+    "ties_at_P90": 155
+  },
+  "agent_calibration_sha256": "6e92f9315a0eec823d96ab705e16b83dad06f1152f7b30c1e84ba63acbe90595",
+  "agent_thresholds_and_normalization": {
+    "VEHICLE": {
+      "MSR": {
+        "P50": 0.14,
+        "P90": 0.78,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0,
+          "upper": 0.86,
+          "scale": 0.86,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "VJ": {
+        "P50": 0.0226020812988281,
+        "P90": 5.165936946868898,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 5.888767238232498e-15,
+          "upper": 9.569549560546871,
+          "scale": 9.569549560546866,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "HJ": {
+        "P50": 0.0185966491699218,
+        "P90": 0.1384258270263671,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0002861022949218,
+          "upper": 0.2497792243957519,
+          "scale": 0.2494931221008301,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      }
+    },
+    "PEDESTRIAN": {
+      "MSR": {
+        "P50": 0.48,
+        "P90": 0.8,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0,
+          "upper": 0.9,
+          "scale": 0.9,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "VJ": {
+        "P50": 0.6953448057174682,
+        "P90": 3.382602334022523,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 1.1147334574510001e-10,
+          "upper": 5.225121621042492,
+          "scale": 5.225121620931018,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "HJ": {
+        "P50": 0.0730633735656738,
+        "P90": 0.487676747143269,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 2.3841857910156247e-05,
+          "upper": 0.8128979802131653,
+          "scale": 0.8128741383552551,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      }
+    },
+    "MOTORCYCLIST": {
+      "MSR": {
+        "P50": 0.3199999999999999,
+        "P90": 0.8,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0,
+          "upper": 0.86,
+          "scale": 0.86,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "VJ": {
+        "P50": 1.54116153717041,
+        "P90": 10.126535892486574,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 3.667381138355854e-09,
+          "upper": 27.355522215366346,
+          "scale": 27.355522211698965,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "HJ": {
+        "P50": 0.03687590360641475,
+        "P90": 0.22560119628906242,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 2.3841857910156247e-05,
+          "upper": 0.3871677815914152,
+          "scale": 0.387143939733505,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      }
+    },
+    "CYCLIST": {
+      "MSR": {
+        "P50": 0.3199999999999999,
+        "P90": 0.8,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0,
+          "upper": 0.86,
+          "scale": 0.86,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "VJ": {
+        "P50": 1.0597944259643552,
+        "P90": 5.440943241119386,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 5.122592417727832e-09,
+          "upper": 11.347143352031706,
+          "scale": 11.347143346909114,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "HJ": {
+        "P50": 0.08444190025329584,
+        "P90": 0.45655310153961176,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 2.3841857910156247e-05,
+          "upper": 0.776460533961653,
+          "scale": 0.7764366921037429,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      }
+    },
+    "BUS": {
+      "MSR": {
+        "P50": 0.0999999999999999,
+        "P90": 0.78,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0,
+          "upper": 0.86,
+          "scale": 0.86,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "VJ": {
+        "P50": 0.7488369941711425,
+        "P90": 6.643214039504528,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 4.296724510074433e-15,
+          "upper": 12.397935390472405,
+          "scale": 12.397935390472401,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      },
+      "HJ": {
+        "P50": 0.0324726104736328,
+        "P90": 0.18076211214065546,
+        "normalization": {
+          "method": "clip((x-P05)/(P95-P05),0,1)",
+          "lower": 0.0002503395080566,
+          "upper": 0.32910466194152777,
+          "scale": 0.3288543224334712,
+          "degenerate": false,
+          "degenerate_policy": "missing normalized value; no artificial scale"
+        }
+      }
+    }
+  },
+  "high_rule": "score > training P90",
+  "low_rule": "score <= training P50",
+  "middle_rule": "training P50 < score <= training P90",
+  "empty_context_rule": "unavailable; separate no_eligible_context group",
+  "normalization_note": "Existing per-agent P05/P95 parameters loaded unchanged; no new scene normalization or combined score."
+}
