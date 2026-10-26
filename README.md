@@ -26,18 +26,56 @@ $$\mathrm{MSR}=1-\frac{1}{50}\sum_{t=0}^{49}m_t.$$
 
 MSR includes leading and trailing absence. It does not identify the reason an annotation is absent.
 
-**Scalar-speed irregularity:**
 
-$$\mathrm{VJ}=\operatorname{median}_{t\in C}\frac{|v_{t+2}-2v_{t+1}+v_t|}{\Delta t^2}.$$
+### Scalar-Speed Irregularity (VJ)
 
-VJ has units m/s³ and is a scalar-speed jerk proxy. It is not vector jerk.
+Velocity Jitter (VJ) measures variations in the scalar-speed increments over the observed trajectory history.
 
-**Heading irregularity:**
+```math
+\mathrm{VJ}
+=
+\mathrm{median}_{t\in C}
+\left(
+\frac{|v_{t+2}-2v_{t+1}+v_t|}{\Delta t^2}
+\right).
+```
 
-$$d_t=\operatorname{wrap}(\theta_{t+1}-\theta_t),\qquad
-\mathrm{HJ}=\operatorname{median}_{t\in C}\frac{|\operatorname{wrap}(d_{t+1}-d_t)|}{\Delta t^2}.$$
+VJ has units of m/s³ and is a scalar-speed jerk proxy, not vector jerk. Higher VJ values indicate greater fluctuations in the rate of change of speed.
 
-HJ has units rad/s² and measures changes in heading increments; it is not angular jerk. Circular differences prevent ±π representation crossings from being mistaken for large turns.
+### Heading Irregularity (HJ)
+
+Heading Jitter (HJ) measures variations in circular heading increments.
+
+The heading increment is defined as
+
+```math
+d_t = \mathrm{wrap}(\theta_{t+1}-\theta_t).
+```
+
+Then HJ is calculated as
+
+```math
+\mathrm{HJ}
+=
+\mathrm{median}_{t\in C}
+\left(
+\frac{|\mathrm{wrap}(d_{t+1}-d_t)|}{\Delta t^2}
+\right).
+```
+
+Here, the set of valid consecutive historical triples is
+
+```math
+C = \{t\in\{0,\ldots,47\}:
+m_t=m_{t+1}=m_{t+2}=1\}.
+```
+
+The sampling interval is $\Delta t=0.1$ seconds.
+
+HJ has units of rad/s² and is an angular-acceleration proxy, not angular jerk.
+
+**Important:** High VJ or HJ values may reflect genuine acceleration, turning manoeuvres, or annotation irregularities. They do not independently establish measurement noise.
+
 
 Primary agent annotation includes VEHICLE, PEDESTRIAN, MOTORCYCLIST, CYCLIST and BUS with at least one historical observation. Other types and agents with zero historical observations are excluded. VJ/HJ require at least five valid adjacent triples; overlapping triples count, so seven contiguous observations suffice. Missing kinematic values remain unavailable, not zero. Differences never bridge invalid frames. [Full definitions and eligibility](documentation/METRIC_DEFINITIONS.md).
 
