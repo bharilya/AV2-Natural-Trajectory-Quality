@@ -1,6 +1,6 @@
 # Metric definitions
 
-All quality annotations use original historical indices t = 0,…,49 at nominal Δt = 0.1 s. No future state, forecast error or model performance enters the quality measures. Original masks are preserved; trajectories are not interpolated or smoothed.
+All quality annotations use original historical indices t = 0,…,49 at nominal Δt = 0.1 s. No future state, forecast error or model performance enters the quality measures. Original masks are preserved, trajectories are not interpolated or smoothed.
 
 ## Fields and units
 
@@ -45,17 +45,56 @@ position–velocity consistency, or confirmed measurement error.
 Genuine driving manoeuvres can also increase VJ.
 
 
-## HJ: changes in circular heading increments
 
-Define
 
-$$\operatorname{wrap}(\alpha)=((\alpha+\pi)\bmod 2\pi)-\pi,\qquad d_t=\operatorname{wrap}(\theta_{t+1}-\theta_t).$$
+## HJ: Changes in Circular Heading Increments
 
-Then
+Heading Jitter (HJ) measures rapid variations in the heading increments of an agent over its observed trajectory history.
 
-$$\mathrm{HJ}=\operatorname{median}_{t\in C}\left(\frac{|\operatorname{wrap}(d_{t+1}-d_t)|}{\Delta t^2}\right).$$
+Define the circular wrapping function as
 
-Units are rad/s². HJ is an angular-acceleration proxy, not angular jerk. Box heading need not equal travel direction, particularly at low speeds. Circular differences handle angle representation crossings, while an actual near-π orientation flip can still produce a large value.
+```math
+\mathrm{wrap}(\alpha)
+=
+((\alpha+\pi)\bmod 2\pi)-\pi.
+```
+
+The heading increment between consecutive timesteps is
+
+```math
+d_t = \mathrm{wrap}(\theta_{t+1}-\theta_t).
+```
+
+Let the set of valid consecutive historical triples be
+
+```math
+C = \{t \in \{0,\ldots,47\} :
+m_t=m_{t+1}=m_{t+2}=1\}.
+```
+
+Then Heading Jitter (HJ) is defined as
+
+```math
+\mathrm{HJ}
+=
+\mathrm{median}_{t\in C}
+\left(
+\frac{
+|\mathrm{wrap}(d_{t+1}-d_t)|
+}{
+\Delta t^2
+}
+\right).
+```
+
+Here, $\Delta t=0.1$ seconds, $\theta_t$ denotes the agent's heading angle at timestep $t$, and $m_t$ is the binary observation-validity mask.
+
+**Units:** rad/s².
+
+**Interpretation:** HJ is an angular-acceleration proxy, not angular jerk. It measures variations in the heading-change rate rather than the total turning angle. Larger HJ values indicate more rapid changes in heading increments.
+
+**Limitations:** Box heading does not necessarily coincide with the direction of travel, particularly at low speeds. Circular differences prevent artificial discontinuities at angle representation boundaries, but genuine heading flips or turning manoeuvres can still produce high HJ values. Therefore, high HJ does not necessarily indicate measurement noise.
+
 
 ## Eligibility and numerical treatment
 
@@ -67,9 +106,29 @@ The source calculation used float64 arithmetic on stored float32 samples. Their 
 
 For each metric and object type, the existing training-agent distribution supplies P50 and P90 for selection. The released JSON also preserves additional candidate percentiles and reference groups from the original analysis; these do not alter the six fixed lists.
 
-The recorded per-agent normalization is
 
-$$z=\operatorname{clip}\!\left(\frac{x-Q^{\mathrm{train}}_{0.05}}{Q^{\mathrm{train}}_{0.95}-Q^{\mathrm{train}}_{0.05}},0,1\right).$$
+## Training-Based Metric Normalization
+
+The recorded per-agent normalization is defined as
+
+```math
+z =
+\mathrm{clip}
+\left(
+\frac{x-Q^{\mathrm{train}}_{0.05}}
+{Q^{\mathrm{train}}_{0.95}-Q^{\mathrm{train}}_{0.05}},
+0,1
+\right).
+```
+
+Here:
+
+- $x$ is the original metric value (MSR, VJ, or HJ).
+- $Q^{\mathrm{train}}_{0.05}$ is the 5th percentile calculated from the training dataset.
+- $Q^{\mathrm{train}}_{0.95}$ is the 95th percentile calculated from the training dataset.
+- $\mathrm{clip}(a,0,1)$ restricts the normalized value to the interval $[0,1]$.
+
+**Important:** All normalization parameters are estimated exclusively from the training dataset and applied unchanged to validation data. The three metrics are normalized independently.
 
 A degenerate scale yields an unavailable normalized value. Global and object-type normalization candidates, and log1p candidates, remain in the calibration file. Selection uses raw score cutoffs, not a sum or average of normalized metrics. No combined quality score is defined.
 
