@@ -147,7 +147,7 @@ No external Python packages are required to read the TXT, CSV and JSON files wit
 - `statistics/`: previously verified counts, overlap statistics and descriptive distributions, copied unchanged.
 - `figures/`: previously generated representative historical-trajectory illustrations, copied unchanged.
 - `documentation/`: metric definitions, selection protocol and data availability/attribution.
-- `REPOSITORY_VERIFICATION.md`: membership, calibration, path, metadata and file-size checks.
+
 
 Scores and splits were **not recomputed** for this release. No raw trajectory arrays, map files, processed datasets, model code, model weights or inference outputs are distributed. Figures are derived visualizations of selected histories, not original machine-readable trajectory files. The release is designed to reproduce fixed memberships and inspect frozen calibration; it does not contain an end-to-end score-generation or forecasting implementation.
 
