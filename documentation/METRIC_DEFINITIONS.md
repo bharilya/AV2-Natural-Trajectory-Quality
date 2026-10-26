@@ -16,17 +16,34 @@ The dimensionless score includes leading and trailing absence. A 50-state histor
 
 Primary agent annotations include only VEHICLE, PEDESTRIAN, MOTORCYCLIST, CYCLIST and BUS with at least one valid historical state. STATIC, BACKGROUND, CONSTRUCTION, RIDERLESS_BICYCLE and UNKNOWN are excluded. A stopped vehicle remains a permitted dynamic object type. Future-only agents do not enter the eligible historical population.
 
-## VJ: scalar-speed jerk proxy
 
-Let
+## VJ: Scalar-Speed Jerk Proxy
 
-$$C=\{t\in\{0,\ldots,47\}:m_tm_{t+1}m_{t+2}=1\}.$$
+Let the set of valid consecutive historical triples be
 
-Then
+$$
+C = \{t \in \{0,\ldots,47\} :
+m_t = m_{t+1} = m_{t+2} = 1\}.
+$$
 
-$$\mathrm{VJ}=\operatorname{median}_{t\in C}\left(\frac{|v_{t+2}-2v_{t+1}+v_t|}{\Delta t^2}\right).$$
+Then Velocity Jitter (VJ) is defined as
 
-Units are m/s³. This is a scalar-speed jerk proxy; it does not measure vector jerk, position–velocity consistency, or confirmed measurement error. Real manoeuvres can increase it.
+$$
+\mathrm{VJ} =
+\mathrm{median}_{t \in C}
+\left(
+\frac{|v_{t+2}-2v_{t+1}+v_t|}{\Delta t^2}
+\right).
+$$
+
+Here, $\Delta t = 0.1$ seconds.
+
+**Units:** m/s³.
+
+VJ is a scalar-speed jerk proxy. It does not measure vector jerk,
+position–velocity consistency, or confirmed measurement error.
+Genuine driving manoeuvres can also increase VJ.
+
 
 ## HJ: changes in circular heading increments
 
